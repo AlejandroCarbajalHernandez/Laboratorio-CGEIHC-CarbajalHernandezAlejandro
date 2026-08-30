@@ -65,8 +65,8 @@ int main() {
 		-0.5f,  0.5f, 0.0f,   1.0f,1.0f,0.0f, // top left 
 	};
 	unsigned int indices[] = {  // note that we start from 0!
-		3,0,1,// second Triangle
-		0,3,2,
+		3,0,1,// Para los ejercicios 1,2 y 3 se usaban los indices: 3,2,1,0,1,3
+		2,3,0,
 		
 	};
 
@@ -119,19 +119,23 @@ int main() {
         ourShader.Use();
         glBindVertexArray(VAO);
 
+		//Ejercicio 1-Dibujar 4 vértices en 1 sola línea de código.
 
-        //glPointSize(10);
-		//Ejercicio 1
         //glDrawArrays(GL_POINTS,0,4);
 		//glPointSize(10);
 		
-		//Ejercicio2
+		//Ejercicio2-Dibujar 2 líneas paralelas.
          //glDrawArrays(GL_LINES,0,4);
 
-		 //Ejercicio3
-		 //glDrawElements(GL_TRIANGLES, 6,GL_UNSIGNED_INT,0);
-		//Ejercicio4
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		 //Ejercicio3-Dibujar un cuadrilátero.
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//Ejercicio4-Dibujar dos triángulos en espejo invertidos.
+		//Mitad izquierda
+		glViewport(0, 0, WIDTH / 2, HEIGHT);
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)0);
+		//mitad derecha
+		glViewport(WIDTH / 2, 0, WIDTH / 2, HEIGHT);
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, (void*)(3 * sizeof(unsigned int)));
 
 		glBindVertexArray(0);
 
